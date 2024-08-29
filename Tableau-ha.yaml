@@ -1,0 +1,2528 @@
+views:
+  - title: Principale
+    type: sections
+    max_columns: 2
+    icon: mdi:home-account
+    sections:
+      - type: grid
+        cards:
+          - show_current: true
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.forecast_shawinigan_sud
+            forecast_type: hourly
+            name: Shawinigan
+            layout_options:
+              grid_columns: 4
+              grid_rows: 4
+            secondary_info_attribute: humidity
+          - type: custom:mushroom-title-card
+            title: Éclairages
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: light-brightness
+            type: tile
+            entity: light.salon
+            name: Salon
+            icon: hue:beyond-down-group
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            color: orange
+          - type: tile
+            entity: light.govee_t2_salon
+            name: Télé
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            color: light-green
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.brilliant_diner_table
+            name: Table
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            color: blue-grey
+          - type: tile
+            entity: light.neviweb130_light_cuisine
+            name: Cuisine
+            color: light-blue
+          - type: tile
+            entity: light.exterieure_avant
+            name: Extérieur avant
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            color: yellow
+          - type: tile
+            entity: light.neviweb130_light_galerie_arriere
+            name: Extérieure arrière
+            icon: hue:ceiling-fugato-two-alt
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            color: orange
+        title: 'Météo '
+      - type: grid
+        cards:
+          - type: tile
+            entity: person.valerie
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: person.brigitte
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: person.claude
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: person.michel
+            show_entity_picture: true
+            vertical: false
+          - type: custom:mushroom-title-card
+            title: Chauffage
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            subtitle: ''
+          - type: tile
+            entity: climate.cuisine
+            layout_options:
+              grid_columns: 2
+              grid_rows: 3
+            features:
+              - type: target-temperature
+              - type: climate-hvac-modes
+          - features:
+              - type: target-temperature
+              - type: climate-hvac-modes
+            type: tile
+            entity: climate.salle_de_repos
+            layout_options:
+              grid_columns: 2
+              grid_rows: 3
+          - type: custom:mushroom-title-card
+            title: Caméras
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: alarm_control_panel.blink_cameras_exterieures
+            show_entity_picture: true
+            name: Extérieure
+            features:
+              - type: alarm-modes
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - features:
+              - type: alarm-modes
+            type: tile
+            entity: alarm_control_panel.blink_cameras_interieures
+            show_entity_picture: true
+            name: Intérieure
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+        title: Personnes
+    badges:
+      - type: entity
+        entity: sensor.date_time
+        name: Date et heure
+        display_type: complete
+      - type: entity
+        entity: sensor.tempest_st_00032986_wind_lull
+        display_type: complete
+        name: Vent
+      - type: entity
+        entity: sensor.shawinigan_wind_direction
+        icon: mdi:arrow-decision
+        display_type: complete
+        show_entity_picture: false
+        name: Direction
+      - type: entity
+        entity: sensor.tempest_st_00032986_rain_today
+        name: Pluie
+        show_entity_picture: true
+        display_type: complete
+      - type: entity
+        entity: sensor.soleil_lever
+        name: Lever
+        display_type: complete
+      - type: entity
+        entity: sensor.soleil_coucher
+        display_type: complete
+        name: Coucher
+      - type: entity
+        entity: sensor.tempest_st_00032986_station_pressure
+        name: Pression
+        display_type: complete
+      - type: entity
+        entity: sensor.phases_de_la_lune
+        name: Phases lune
+        display_type: complete
+        icon: mdi:moon-waning-crescent
+      - type: entity
+        entity: sensor.nombre_de_lumieres_allumees
+        display_type: complete
+        icon: mdi:lightbulb
+        color: red
+        visibility:
+          - condition: state
+            entity: sensor.nombre_de_lumieres_allumees
+            state_not: '0'
+        name: Allumées
+      - type: entity
+        entity: sensor.nombre_de_mise_a_jour_total
+        icon: mdi:update
+        color: red
+        visibility:
+          - condition: state
+            entity: sensor.nombre_de_mise_a_jour_total
+            state_not: '0'
+        name: MAJ
+        display_type: complete
+    cards: []
+    theme: NMMIC - Gonsboro
+  - title: Rez-de-chaussée
+    path: Vue-rez-de-chaussee
+    icon: mdi:home-floor-1
+    cards: []
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: >-
+              Salon {{ states('sensor.maison_temperature') }}°C -
+              {{states('sensor.maison_humidite')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            subtitle: ''
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_salon
+            name: Chauffage
+            color: red
+            state_content:
+              - current_temperature
+              - hvac_action
+              - temperature
+          - type: tile
+            entity: light.salon
+            name: Lampes
+            icon: hue:beyond-solid-group
+          - type: tile
+            entity: light.lecture
+            name: Lectrure
+            icon: mdi:desk-lamp-on
+          - type: tile
+            entity: light.brilliant_salon_huche_du_salon
+            name: Huche
+            icon: hue:ceiling-adore
+            color: indigo
+          - type: tile
+            entity: light.govee_t2_salon
+            name: Govee Télé
+            color: brown
+          - type: tile
+            entity: switch.neviweb130_switch_huche_salon
+            name: Huche
+          - type: tile
+            entity: switch.neviweb130_switch_lampes_du_salon
+            name: Lampes
+          - type: tile
+            entity: switch.neviweb130_switch_television
+            name: Télévision
+          - type: tile
+            entity: binary_sensor.salon_mouvement
+            name: Mouvements
+          - type: custom:mushroom-title-card
+            title: >-
+              Salle à manger {{ states('sensor.th_salle_diner_temperature') }}°C
+              - {{states('sensor.th_salle_diner_humidite')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            subtitle: ''
+          - features:
+              - type: target-temperature
+              - type: climate-hvac-modes
+            type: tile
+            entity: climate.cuisine
+            name: Chauffage
+            color: pink
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            state_content:
+              - temperature
+              - state
+          - features:
+              - type: lock-commands
+            type: tile
+            entity: lock.porte_d_entree
+            name: Serrure avant
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: plant.lis_de_la_paix
+            name: Lis de la paix
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: light.brilliant_diner_table
+            color: blue-grey
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            name: Table
+          - type: tile
+            entity: light.brilliant_diner_vestibule_avant
+            name: Vestibulle
+            icon: phu:ceiling-lamp-plafond
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: >-
+              Cuisine {{ states('sensor.sensibo_temperature_courante_cuisine')
+              }}°C - {{states('sensor.sensibo_humiditee_courante_cuisine')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            subtitle: ''
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_cuisine
+            name: Chauffage
+            color: indigo
+            state_content:
+              - current_temperature
+              - hvac_action
+              - hourly_kwh
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.neviweb130_light_cuisine
+            name: Évier
+            color: orange
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.huche_cuisine_lumiere
+            name: Huche
+            color: amber
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: light.garde_robes_cuisine_lumiere
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            icon: hue:ceiling-beyond-alt
+            name: Placard
+            color: primary
+          - type: tile
+            entity: switch.neviweb130_switch_ipad_ha
+            name: IPad HA
+            color: indigo
+          - type: tile
+            entity: light.neviweb130_light_entree_arriere
+            name: Entrée arrière
+            icon: hue:ceiling-fugato-two
+            show_entity_picture: true
+            color: green
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.cuisine_mouvement
+            name: Mouvements
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.detecteur_de_fuites_lave_vaisselles_humidite
+            name: Fuites
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: custom:mushroom-title-card
+            title: >-
+              Salle d'eau {{ states('sensor.th_salle_eau_temperature') }}°C -
+              {{states('sensor.th_salle_eau_humidite')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            subtitle: ''
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_salle_eau
+            name: Chauffage
+            state_content:
+              - current_temperature
+              - hvac_action
+              - hourly_kwh
+          - type: tile
+            entity: light.neviweb130_light_salle_deau
+            name: Plafond
+            icon: hue:ceiling-adore
+            color: pink
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.detecteur_de_fuites_salle_d_eau_humidite
+            name: Fuites Toilette
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: vacuum.roomba_un
+            name: Aspirateur
+            color: blue
+            features:
+              - type: vacuum-commands
+                commands:
+                  - start_pause
+                  - stop
+                  - locate
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+      - type: grid
+        cards: []
+      - type: grid
+        cards: []
+    badges: []
+    subview: false
+  - title: Deuxième
+    path: Vue-deuxieme
+    icon: mdi:home-floor-2
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: >-
+              Chambre des maîtres {{
+              states('sensor.maison_chambre_des_maitres_temperature') }}°C -
+              {{states('sensor.maison_chambre_des_maitres_humidite')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_ch_maitres
+            name: Chauffage
+            color: green
+            state_content:
+              - current_temperature
+              - hvac_action
+              - daily_kwh
+          - type: tile
+            entity: light.brilliant_chambre_maitres_chambre_maitres_light
+            name: Plafond
+            color: light-blue
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: light.chevets
+            name: Lampes de chevets
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: custom:mushroom-title-card
+            title: >-
+              Bureau {{ states('sensor.maison_bureau_temperature') }}°C -
+              {{states('sensor.maison_bureau_humidite')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_bureau
+            name: Chauffage
+            color: yellow
+            state_content:
+              - current_temperature
+              - hvac_action
+              - monthly_kwh
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.neviweb130_light_bureau
+            name: Plafond
+            color: red
+            icon: hue:ceiling-buratto-four
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: light.neviweb130_light_garde_robe_bureau
+            icon: hue:ceiling-beyond-alt
+            color: deep-purple
+            name: Garde-Robes
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: sensor.canon_pro_100_series
+            name: Imprimante
+            color: lime
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: switch.neviweb130_switch_ordinateur
+            name: Ordinateur
+            color: grey
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: vacuum.roomba_deux
+            name: Aspirateur
+            color: light-blue
+            features:
+              - type: vacuum-commands
+                commands:
+                  - start_pause
+                  - stop
+                  - locate
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+          - features:
+              - type: alarm-modes
+            type: tile
+            entity: alarm_control_panel.blink_cameras_exterieures
+            show_entity_picture: true
+            name: Caméras Extérieure
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - features:
+              - type: alarm-modes
+            type: tile
+            entity: alarm_control_panel.blink_cameras_interieures
+            show_entity_picture: true
+            name: Caméras Intérieure
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: >-
+              Salle de bain {{
+              states('sensor.ajout_sensor_temperature_salle_de_bain_maitres')
+              }}°C -
+              {{states('sensor.ajout_sensor_humidite_salle_de_bain_maitres')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_salle_bain
+            name: Chauffage
+            color: purple
+            state_content:
+              - current_temperature
+              - hvac_action
+              - monthly_kwh
+          - type: tile
+            entity: light.salle_de_bain
+            name: Huche
+            icon: hue:ceiling-adore
+            color: light-green
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: binary_sensor.detecteur_de_fuites_salle_de_bain_humidite
+            name: Fuite toilette
+            color: teal
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: custom:mushroom-title-card
+            title: >-
+              Boudoir {{
+              states('sensor.sensibo_temperature_courante_salle_de_repos') }}°C
+              - {{states('sensor.sensibo_humiditee_courante_salle_de_repos')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: target-temperature
+              - type: climate-hvac-modes
+            type: tile
+            entity: climate.salle_de_repos
+            color: red
+            state_content:
+              - temperature
+              - state
+            name: Sensibo
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_salle_repos
+            color: amber
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+            name: Sinopé
+            state_content:
+              - current_temperature
+              - hvac_action
+              - monthly_kwh
+          - type: tile
+            entity: switch.salle_de_repos
+            name: Plafond
+            color: cyan
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: binary_sensor.detecteur_de_fuites_laveuse_humidite
+            name: Fuites laveuse
+            color: red
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.hue_motion_sensor_1_mouvement
+            name: Mouvements
+            color: deep-purple
+    subview: false
+    cards: []
+  - title: Sous-sol
+    path: Vue-sous-sol
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    subview: false
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: >-
+              Salle familiale {{ states('sensor.maison_sous_sol_temperature')
+              }}°C - {{states('sensor.maison_sous_sol_humidite')}}%
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_salle_familiale
+            name: Chauffage
+            color: brown
+            state_content:
+              - current_temperature
+              - hvac_action
+              - monthly_kwh
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.salle_familiale
+            name: Plafond
+            icon: phu:bulb-group-ceiling-square
+            color: cyan
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.escalier_sous_sol_groupe_de_lumieres
+            icon: phu:bulb-group-ceiling-square
+            name: Escalier
+            color: pink
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: light.echangeur
+            icon: hue:bulb-br30-hung
+            name: Échangeur d’air
+            color: orange
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.detecteur_de_fuites_chauffe_eau_humidite
+            name: Chauffe eau
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.sous_sol_mouvement
+            name: Mouvements
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: camera.sous_sol
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: >-
+              Chambre des invités  {{ states('sensor.th_ch_invites_temperature')
+              }}°C - {{states('sensor.th_ch_invites_humidite')}}%
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_ch_invites
+            name: Chauffage
+            color: light-blue
+            state_content:
+              - current_temperature
+              - hvac_action
+              - monthly_kwh
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.neviweb130_light_chambre_invites
+            name: Plafond
+            icon: phu:ceiling-lamp-plafond
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: custom:mushroom-title-card
+            title: >-
+              Atelier  {{ states('sensor.th_atelier_temperature') }}°C -
+              {{states('sensor.th_atelier_humidite')}}%
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: target-temperature
+            type: tile
+            entity: climate.neviweb130_climate_atelier
+            name: Chauffage
+            color: lime
+            state_content:
+              - current_temperature
+              - hvac_action
+              - monthly_kwh
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: tile
+            entity: light.neviweb130_light_atelier
+            name: Huche
+            icon: hue:bulb-group-ceiling-round
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+    icon: mdi:home-floor-0
+    cards: []
+  - title: Extérieure
+    path: Vue-exterieure
+    icon: mdi:tree
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    subview: false
+    sections:
+      - type: grid
+        cards:
+          - type: tile
+            entity: light.exterieure_avant
+            name: Avant
+            color: dark-grey
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.galerie_avant_groupe_de_lumieres
+            name: Galerie Avant
+            color: lime
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            features:
+              - type: light-brightness
+          - type: tile
+            entity: light.lampadaire_groupe_de_lumieres
+            name: Lampadaire
+            icon: hue:floor-lantern-group
+            color: indigo
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: light.neviweb130_light_galerie_arriere
+            name: Galerie Arrière
+            color: red
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: custom:mushroom-title-card
+            title: Contrôles des caméras
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: alarm_control_panel.blink_cameras_exterieures
+            show_entity_picture: true
+            name: Extérieure
+            features:
+              - type: alarm-modes
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+        title: Éclairages
+      - type: grid
+        cards:
+          - type: tile
+            entity: camera.galerie_avant
+            name: Galerie avant
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: camera.allee
+            name: Galerie allée
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: camera.galerie_arriere
+            name: Galerie arrière
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: custom:mushroom-title-card
+            title: Mouvements
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.galerie_arriere_mouvement
+            name: Galerie Avant
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.galerie_arriere_mouvement
+            name: Galerie arrière
+            color: purple
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: binary_sensor.allee_mouvement
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+        title: États caméras
+    cards: []
+  - title: Hydro-Québec
+    path: sous-vue-hydro-quebec
+    icon: mdi:flash
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: glance
+            entities:
+              - entity: sensor.hydroqc_maison_current_billing_period_current_day
+                name: Période
+              - entity: sensor.hydroqc_maison_number_of_winter_days
+                name: jour d'hiver
+              - entity: sensor.hydroqc_maison_number_of_critical_hours
+                name: Heure critiques
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+          - type: custom:mushroom-title-card
+            title: Consommations
+          - type: glance
+            entities:
+              - entity: sensor.hydroqc_maison_current_billing_period_total_consumption
+                name: Consommation
+              - entity: >-
+                  sensor.hydroqc_maison_current_billing_period_lower_price_consumption
+                name: Normal
+              - entity: >-
+                  sensor.hydroqc_maison_current_billing_period_higher_price_consumption
+                name: Élevé
+              - entity: >-
+                  sensor.hydroqc_maison_current_billing_period_daily_consumption_mean
+                name: kWh Jour
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+          - type: custom:mushroom-title-card
+            title: Statistiques
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.hydroqc_maison_current_billing_period_total_consumption
+            hours_to_show: 120
+            name: kWh
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            theme: NM - Gonsboro
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.hydroqc_maison_current_billing_period_total_to_date
+            name: Coût
+            hours_to_show: 72
+            theme: NM - Gonsboro
+        title: Périodes
+      - type: grid
+        cards:
+          - type: glance
+            show_name: true
+            show_icon: true
+            show_state: true
+            entities:
+              - entity: sensor.hydroqc_maison_balance
+                name: Coûts
+              - entity: sensor.hydroqc_maison_current_billing_period_total_to_date
+                name: Réel
+              - entity: sensor.hydroqc_maison_current_billing_period_kwh_cost_mean
+                name: Coût jour
+              - entity: binary_sensor.hydroqc_maison_current_period_epp_enabled
+                name: Égaux
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+          - type: custom:mushroom-title-card
+            title: Tarif / Pannes / Heure de pointes
+          - type: glance
+            show_name: true
+            show_icon: true
+            show_state: true
+            entities:
+              - entity: sensor.etat_hydroqc_maison_next_or_current_outage
+                name: Panne
+              - entity: sensor.etat_hydroqc_maison_current_dpc_period_detail
+                name: Tarif
+              - entity: binary_sensor.hydroqc_maison_critical_peak_in_progress
+                name: Pointe
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+          - type: custom:mushroom-title-card
+            title: Périodes Flex D
+          - type: glance
+            show_name: true
+            show_icon: true
+            show_state: true
+            entities:
+              - entity: binary_sensor.hydroqc_maison_pre_heat_in_progress
+                name: Réchauffage
+              - entity: sensor.etat_hydroqc_maison_next_peak_start
+                name: Début
+              - entity: sensor.etat_hydroqc_maison_next_peak_end
+                name: Fin
+                state_color: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+        title: Coûts
+    theme: NMMIC - Gonsboro
+    cards: []
+    badges:
+      - type: entity
+        entity: sensor.hydro_quebec_production_hydraulique
+        display_type: complete
+        name: Hydrolique
+        icon: mdi:hydro-power
+      - type: entity
+        entity: sensor.hydro_quebec_production_eolien
+        name: Éolienne
+        icon: mdi:wind-turbine
+        visibility:
+          - condition: numeric_state
+            entity: sensor.hydro_quebec_production_eolien
+            above: 0
+        display_type: complete
+      - type: entity
+        entity: sensor.hydro_quebec_production_solaire
+        icon: mdi:sun-wireless
+        visibility:
+          - condition: numeric_state
+            entity: sensor.hydro_quebec_production_solaire
+            above: 0
+        display_type: complete
+        name: Solaire
+      - type: entity
+        entity: sensor.hydro_quebec_production_autres
+        icon: mdi:flash
+        visibility:
+          - condition: numeric_state
+            entity: sensor.hydro_quebec_production_autres
+            above: 0
+        display_type: complete
+        name: Autres
+      - type: entity
+        entity: sensor.hydro_quebec_production_total
+        name: Total
+        display_type: complete
+        state_content:
+          - name
+          - state
+        icon: mdi:transmission-tower-import
+      - type: entity
+        entity: sensor.hydro_quebec_demande_de_puissance_reseau
+        display_type: complete
+        name: Demande
+        icon: mdi:transmission-tower-export
+  - title: Calandrier
+    path: Sous-vue-calandriers
+    icon: mdi:calendar-month
+    theme: NMMIC - Gonsboro
+    cards: []
+    badges:
+      - type: entity
+        entity: sensor.date_time
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - initial_view: listWeek
+            type: calendar
+            entities:
+              - calendar.michel
+              - calendar.anniversaires
+              - calendar.sports
+              - calendar.ordures_menageres
+              - calendar.ordures_compostage
+              - calendar.ordures_recuperation
+            title: Quotidien
+            theme: NMMIC - Gonsboro
+        title: Quotidien
+      - type: grid
+        cards:
+          - initial_view: dayGridMonth
+            type: calendar
+            entities:
+              - calendar.michel
+              - calendar.anniversaires
+              - calendar.sports
+              - calendar.ordures_menageres
+              - calendar.ordures_compostage
+              - calendar.ordures_recuperation
+            title: Quotidien
+            theme: NMMIC - Gonsboro
+        title: Mensuel
+  - title: Netatmo
+    path: Sous-vue-netatmo
+    icon: mdi:home-circle-outline
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.maison_pression_atmospherique
+                name: Pression
+              - entity: sensor.maison_temperature
+                name: Température
+              - entity: sensor.maison_humidite
+                name: Humidité
+              - entity: sensor.maison_noise
+                name: Bruit
+            columns: 4
+            state_color: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            title: Salon
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.maison_chambre_des_maitres_temperature
+                name: Température
+              - entity: sensor.netatmo_traduire_tendance_temperature_chambre_maitres
+                name: Tendance
+                icon: mdi:thermometer
+              - entity: sensor.maison_chambre_des_maitres_humidite
+                name: humidité
+              - entity: sensor.maison_chambre_des_maitres_batterie
+                name: Pile
+            columns: 4
+            state_color: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            title: Chambre des maîtres
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.maison_bureau_temperature
+                name: Température
+              - entity: sensor.netatmo_traduire_tendance_temperature_bureau
+                name: Tendance
+                icon: mdi:thermometer
+              - entity: sensor.maison_bureau_humidite
+                name: humidité
+              - entity: sensor.maison_bureau_batterie
+                name: Pile
+            columns: 4
+            state_color: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            title: Bureau
+        title: Observations par unitées
+      - type: grid
+        cards:
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.maison_dioxyde_de_carbone
+            name: Salon
+            hours_to_show: 24
+            theme: NM - Gonsboro
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.maison_chambre_des_maitres_dioxyde_de_carbone
+            name: Chambre des maîtres
+            hours_to_show: 24
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            theme: NM - Gonsboro
+          - type: tile
+            name: État Salon
+            icon: mdi:molecule-co2
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            entity: sensor.netatmo_salon_co2_text
+          - type: tile
+            name: État chambre
+            icon: mdi:molecule-co2
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            entity: sensor.netatmo_chambre_maitres_co2_text
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.maison_bureau_dioxyde_de_carbone
+            name: Bureau
+            hours_to_show: 24
+            theme: NM - Gonsboro
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.maison_sous_sol_dioxyde_de_carbone
+            name: Sous-Sol
+            hours_to_show: 24
+            theme: NM - Gonsboro
+          - type: tile
+            name: État bureau
+            icon: mdi:molecule-co2
+            hide_state: false
+            vertical: false
+            show_entity_picture: false
+            entity: sensor.netatmo_bureau_co2_text
+          - type: tile
+            name: État Sous-sol
+            icon: mdi:molecule-co2
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            entity: sensor.netatmo_sous_sol_co2_text
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.maison_sous_sol_temperature
+                name: Température
+              - entity: sensor.netatmo_traduire_tendance_temperature_sous_sol
+                name: Tendance
+                icon: mdi:thermometer
+              - entity: sensor.maison_sous_sol_humidite
+                name: humidité
+              - entity: sensor.maison_sous_sol_batterie
+                name: Pile
+            columns: 4
+            state_color: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            title: Sous-Sol
+        title: Dioxyde de carbone
+    badges:
+      - type: entity
+        entity: sensor.maison_thermopompe_temperature
+        display_type: complete
+        name: Thermopompe
+      - type: entity
+        entity: sensor.netatmo_traduire_tendance_temperature_thermopompe
+        display_type: complete
+        name: Tendance
+        icon: mdi:thermometer-alert
+      - type: entity
+        entity: sensor.maison_thermopompe_humidite
+        display_type: complete
+        name: Himidité
+      - type: entity
+        entity: sensor.maison_thermopompe_batterie
+        display_type: complete
+        name: Pile
+    cards: []
+  - title: Météo
+    path: Sous-vue-meteo
+    icon: mdi:weather-partly-lightning
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - show_current: true
+            show_forecast: true
+            type: weather-forecast
+            entity: weather.forecast_shawinigan_sud
+            forecast_type: daily
+            name: Prévisions Shawinigan-Sud
+            layout_options:
+              grid_columns: 4
+              grid_rows: 4
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.shawinigan_chance_of_precipitation
+                name: Chance
+                icon: mdi:weather-pouring
+              - entity: sensor.tempest_st_00032986_rain_today
+                name: Aujourd'hui
+              - entity: sensor.tempest_st_00032986_rain_rate
+                name: Taux
+              - entity: sensor.tempest_st_00032986_rain_yesterday
+                name: Hier
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            title: Pluie
+          - type: markdown
+            content: >-
+              {{'\n'}} <ha-alert alert-type="info" title="Observations">{{
+              states("sensor.shawinigan_summary") }}
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+        title: Observations / Pluie
+      - type: grid
+        cards:
+          - camera_view: auto
+            type: picture-glance
+            entities: []
+            camera_image: camera.shawinigan_radar
+            layout_options:
+              grid_columns: 4
+              grid_rows: 7
+          - type: markdown
+            content: |2
+                                      {% if is_number(states('sensor.shawinigan_advisory')) and states('sensor.shawinigan_advisory') | int == 0 and 
+                                         is_number(states('sensor.shawinigan_statements')) and states('sensor.shawinigan_statements') | int == 0 and 
+                                         is_number(states('sensor.shawinigan_warnings')) and states('sensor.shawinigan_warnings') | int == 0 and 
+                                         is_number(states('sensor.shawinigan_watches')) and states('sensor.shawinigan_watches') | int == 0 and 
+                                         is_number(states('sensor.shawinigan_endings')) and states('sensor.shawinigan_endings') | int == 0  %}
+
+                                          <ha-alert alert-type="info">Aucune alerte présentement</ha-alert>
+                                       
+                                      {% else %}
+
+                                         {% set x = [ 'sensor.shawinigan_advisory', 'sensor.shawinigan_statements', 'sensor.shawinigan_warnings', 'sensor.shawinigan_watches', 'sensor.shawinigan_endings' ] %}
+
+                                         {% for state in states.sensor if state.entity_id in x %}
+                                           {% for attr in state.attributes %}
+                                             {%- if attr.startswith('alert_') %}
+                                               {%- if attr.startswith('alert_time_') %}
+                                                 {{ state_attr(state.entity_id, attr) }}</ha-alert>
+                                               {% else %}
+                                                 {{'\n'}}<ha-alert alert-type="warning" title="{{ state_attr(state.entity_id,'friendly_name') }}">{{ state_attr(state.entity_id, attr) }}
+                                               {%- endif %}
+                                             {%- endif %}
+                                           {%- endfor %}
+                                         {% endfor %}
+
+                                      {% endif %}
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+        title: Carte / Alertes
+    badges:
+      - type: entity
+        entity: sensor.minmax_temperature_min_jour
+        display_type: complete
+        name: Jour
+        icon: mdi:arrow-expand-down
+      - type: entity
+        entity: sensor.minmax_temperature_max_jour
+        display_type: complete
+        name: Jour
+        icon: mdi:arrow-expand-up
+      - type: entity
+        entity: sensor.minmax_temperature_min_mois
+        display_type: complete
+        name: Mois
+        icon: mdi:arrow-expand-down
+      - type: entity
+        entity: sensor.minmax_temperature_max_mois
+        display_type: complete
+        name: Mois
+        icon: mdi:arrow-expand-up
+      - type: entity
+        entity: sensor.minmax_temperature_minimum
+        display_type: complete
+        name: Minimun
+        icon: mdi:arrow-expand-down
+      - type: entity
+        entity: sensor.minmax_temperature_maximum
+        display_type: complete
+        name: Maximum
+        icon: mdi:arrow-expand-up
+      - type: entity
+        entity: sensor.tempest_st_00032986_lightning_count_today
+        display_type: complete
+        name: Éclaire
+      - type: entity
+        entity: sensor.tempest_st_00032986_lightning_distance
+        display_type: complete
+        name: Distance
+      - type: entity
+        entity: sensor.tempest_st_00032986_uv_index
+        name: UV
+        display_type: complete
+      - type: entity
+        entity: sensor.tempest_st_00032986_uv_level
+        name: Niveau UV
+        display_type: complete
+    cards: []
+  - title: Système
+    path: Sous-vue-systeme
+    icon: mdi:desktop-classic
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.speedtest_download
+            name: Téléchargement
+            hours_to_show: 72
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            theme: NM - Gonsboro
+          - graph: line
+            type: sensor
+            detail: 2
+            entity: sensor.speedtest_upload
+            name: Téléversement
+            hours_to_show: 72
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            theme: NM - Gonsboro
+          - graph: line
+            type: sensor
+            detail: 2
+            hours_to_show: 72
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            entity: sensor.speedtest_ping
+            name: Ping
+            theme: NM - Gonsboro
+        title: Internet
+      - type: grid
+        cards:
+          - graph: line
+            type: sensor
+            detail: 1
+            entity: sensor.system_monitor_temperature_du_processeur
+            hours_to_show: 72
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            name: Température
+            theme: NM - Gonsboro
+          - graph: line
+            type: sensor
+            detail: 1
+            entity: sensor.system_monitor_utilisation_de_la_memoire
+            hours_to_show: 72
+            name: Mémoire utilisée
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+            theme: NM - Gonsboro
+          - show_name: true
+            show_icon: true
+            show_state: true
+            type: glance
+            entities:
+              - entity: sensor.system_monitor_charge_1m
+                name: 1 minute
+              - entity: sensor.system_monitor_charge_5m
+                name: 51 minutes
+              - entity: sensor.system_monitor_charge_15m
+                name: 15 minutes
+            title: Charge
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+        title: RPI
+    badges:
+      - type: entity
+        entity: sensor.system_monitor_utilisation_du_processeur
+        display_type: complete
+        name: RPI CPU
+      - type: entity
+        entity: sensor.system_monitor_utilisation_du_disque
+        display_type: complete
+        name: Disque
+      - type: entity
+        entity: sensor.system_monitor_dernier_demarrage
+        display_type: complete
+        name: Actif depuis
+      - type: entity
+        entity: binary_sensor.rpi_power_status
+        display_type: complete
+        name: État RPI
+    cards: []
+  - title: Piles
+    path: sous-vue-piles
+    icon: mdi:battery
+    theme: NMMIC - Gonsboro
+    cards: []
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |-
+              {% set batteries = states.sensor
+                | selectattr('attributes.device_class', 'defined')
+                | selectattr('attributes.device_class', 'eq', 'battery')
+                | rejectattr('state', 'in', ['unknown', 'unavailable'])
+                | rejectattr('state', 'in', '100')
+                | rejectattr('state', 'le', '25')
+
+                | sort(attribute='state') %}
+              {% for battery in batteries %}
+                <span style="display: inline-block; margin-bottom: 5px;">
+                  <ha-icon icon="mdi:battery-charging-{{ (states[battery.entity_id].state | int / 10) | int * 10 }}" style="color: 
+                  {% if states[battery.entity_id].state | int < 10 %}red
+                  {% elif states[battery.entity_id].state | int < 20 %}orange
+                  {% elif states[battery.entity_id].state | int < 50 %}yellow
+                  {% else %}green{% endif %};"></ha-icon>
+                  {{ states[battery.entity_id].name }}: {{ states[battery.entity_id].state }}%
+                </span><br>
+              {% endfor %}
+            layout_options:
+              grid_columns: 4
+              grid_rows: 8
+        title: Niveaux Piles
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+
+              {% set batteries = states.sensor
+                | selectattr('attributes.device_class', 'defined')
+                | selectattr('attributes.device_class', 'eq', 'battery')
+                | rejectattr('state', 'in', ['unknown', 'unavailable'])
+                | selectattr('state', 'eq', '100')
+                | sort(attribute='state') %}
+
+              {% for battery in batteries %}
+                <span style="display: inline-block; margin-bottom: 5px;">
+                  <ha-icon icon="mdi:battery-charging-100" style="color: 
+                    green};"></ha-icon>
+                  {{ states[battery.entity_id].name }}: {{ states[battery.entity_id].state }}%
+                </span><br>
+              {% endfor %}
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+          - type: custom:mushroom-title-card
+            title: Niveaux bas (< 25%)
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: markdown
+            content: |
+              {% set batteries = states.sensor
+                | selectattr('attributes.device_class', 'defined')
+                | selectattr('attributes.device_class', 'eq', 'battery')
+                | selectattr('state', 'le', '25')
+                | rejectattr('state', 'eq', '100')
+                | sort(attribute='state') %}
+
+              {% for battery in batteries %}
+                <span style="display: inline-block; margin-bottom: 5px;">
+                  <ha-icon icon="mdi:battery-charging-{{ (states[battery.entity_id].state | int / 10) | int * 10 }}" style="color: 
+                  {% if states[battery.entity_id].state | int < 10 %}red
+                  {% elif states[battery.entity_id].state | int < 20 %}orange
+                  {% elif states[battery.entity_id].state | int < 50 %}yellow
+                  {% else %}green{% endif %};"></ha-icon>
+                  {{ states[battery.entity_id].name }}: {{ states[battery.entity_id].state }}%
+                </span><br>
+              {% endfor %}
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+          - type: custom:mushroom-title-card
+            title: Piles Caméras
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: custom:auto-entities
+            show_empty: false
+            card:
+              type: custom:mushroom-chips-card
+            card_param: chips
+            filter:
+              include:
+                - attributes:
+                    device_class: battery
+                  domain: binary_sensor
+                  options:
+                    type: light
+                    content_info: name
+                    tap_action:
+                      action: more-info
+                    double_tap_action:
+                      action: none
+        title: Niveaux (100%)
+    badges:
+      - type: entity
+        entity: sensor.life360_pile_tel_valerie
+        display_type: complete
+        name: Téléphone Valérie
+        icon: mdi:battery
+      - type: entity
+        entity: sensor.life360_pile_tel_brigitte
+        display_type: complete
+        name: Téléphone Brigitte
+      - type: entity
+        entity: sensor.life360_pile_tel_claude
+        display_type: complete
+        name: Téléphone Claude
+      - type: entity
+        entity: sensor.life360_pile_tel_michel
+        display_type: complete
+        name: Téléphone Michel
+  - title: Suivi
+    path: Sous-vue-suivi
+    icon: mdi:arrow-bottom-right-thin-circle-outline
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.caa_prix_essence_shawinigan_aujourd_hui
+                name: Aujourd'hui
+                icon: mdi:gas-station-in-use
+              - entity: sensor.caa_prix_essence_shawinigan_hier
+                name: Hier
+                icon: mdi:gas-station-in-use
+              - entity: sensor.caa_prix_essence_shawinigan_l_annee_derniere
+                name: Année dernière
+                icon: mdi:gas-station-in-use
+            title: Shawinigan
+            layout_options:
+              grid_columns: 4
+              grid_rows: 4
+          - type: custom:mushroom-title-card
+            title: Par villes
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: vertical-stack
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:multiple-entity-row
+                    entity: sensor.caa_prix_essence_quebec_aujourd_hui
+                    name: Québec
+                    show_state: false
+                    secondary_info: last-changed
+                    entities:
+                      - entity: sensor.caa_prix_essence_quebec_aujourd_hui
+                        name: Actuel
+                        unit: $
+                      - entity: sensor.caa_prix_essence_quebec_hier
+                        name: Hier
+                        unit: $
+                  - type: section
+                  - type: custom:multiple-entity-row
+                    entity: sensor.caa_prix_essence_trois_rivieres_aujourd_hui
+                    name: Trois-Rivères
+                    show_state: false
+                    secondary_info: last-changed
+                    entities:
+                      - entity: sensor.caa_prix_essence_trois_rivieres_aujourd_hui
+                        name: false
+                        unit: $
+                      - entity: sensor.caa_prix_essence_trois_rivieres_hier
+                        name: false
+                        unit: $
+                  - type: section
+                  - type: custom:multiple-entity-row
+                    entity: sensor.caa_prix_essence_montreal_aujourd_hui
+                    name: Montréal
+                    show_state: false
+                    secondary_info: last-changed
+                    entities:
+                      - entity: sensor.caa_prix_essence_montreal_aujourd_hui
+                        name: false
+                        unit: $
+                      - entity: sensor.caa_prix_essence_montreal_hier
+                        name: false
+                        unit: $
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+        title: Prix essence
+      - type: grid
+        cards:
+          - type: tile
+            entity: sensor.iqa_numeric_shawinigan
+            state_content:
+              - state
+              - last_updated
+            name: États
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            icon: mdi:air-filter
+          - type: tile
+            entity: sensor.iqa_text_shawinigan
+            icon: mdi:arrow-collapse-vertical
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            name: Description
+          - chart_type: line
+            period: day
+            type: statistics-graph
+            entities:
+              - entity: sensor.statistiques_iqa_shawinigan
+                name: IQA
+              - entity: sensor.statistiques_temperature_shawinigan
+                name: température
+            stat_types:
+              - min
+              - max
+              - mean
+            days_to_show: 60
+            title: IQA versus Température
+            hide_legend: false
+            logarithmic_scale: false
+            layout_options:
+              grid_columns: 4
+              grid_rows: 7
+        title: IQA
+    badges: []
+    cards: []
+  - title: Formule 1
+    path: Sous-vue-formule-1
+    icon: mdi:flag-checkered
+    type: sections
+    cards: []
+    theme: NMMIC - Gonsboro
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: custom:formulaone-card
+            card_type: next_race
+            show_raceinfo: true
+            f1_font: true
+            only_show_date: true
+            show_refresh: true
+            translations:
+              days: j
+              hours': h
+              minutes': m
+              seconds': s
+              date: Date
+              practice1: Essais libres 1
+              practice2: Essais libres 2
+              practice3: Essais libres 3
+              race: Course
+              racename: Nom
+              circuitname: Piste
+              location: Endroit
+              city: Ville
+              racetime: Course
+              sprint: Sprint
+              qualifying: Qualifications
+              endofseason: Saison terminée
+            show_carnumber: false
+            hide_tracklayout: true
+            location_clickable: true
+            hide_racedatetimes: false
+            show_weather: false
+            layout_options:
+              grid_columns: 4
+              grid_rows: 5
+          - type: custom:formulaone-card
+            card_type: constructor_standings
+            f1_font: true
+            standings:
+              show_teamlogo: false
+            translations:
+              constructor: Équipe
+              points: Points
+              wins: Gagné
+            layout_options:
+              grid_columns: 4
+              grid_rows: 6
+        title: Prochaine course / Classement des équipes
+      - type: grid
+        cards:
+          - type: custom:formulaone-card
+            card_type: driver_standings
+            f1_font: true
+            standings:
+              show_flag: false
+              show_team: false
+              show_teamlogo: false
+            translations:
+              points: Points
+              wins: Gagnées
+              driver: Pilote
+            layout_options:
+              grid_columns: 4
+              grid_rows: 8
+        title: Classement des pilotes
+  - title: Personnes
+    path: Sous-vue-personnes
+    icon: mdi:account
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: person.valerie
+              - entity: sensor.life360_pile_tel_valerie
+                name: Piles
+                icon: mdi:battery
+              - entity: sensor.life360_pile_tel_en_charge_valerie
+                name: Charge
+                icon: mdi:flash
+              - entity: sensor.life360_en_deplacement_valerie
+                name: Déplacement
+                icon: mdi:move-resize-variant
+              - entity: sensor.life360_vitesse_valerie
+                name: Vitesse
+                icon: mdi:speedometer
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+          - type: map
+            entities:
+              - entity: person.valerie
+            theme_mode: light
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+            hours_to_show: 72
+            default_zoom: 11
+          - type: custom:mushroom-title-card
+            title: Claude
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: entities
+            entities:
+              - entity: person.claude
+              - entity: sensor.life360_pile_tel_claude
+                name: Piles
+                icon: mdi:battery
+              - entity: sensor.life360_pile_tel_en_charge_claude
+                name: Charge
+                icon: mdi:flash
+              - entity: sensor.life360_en_deplacement_claude
+                name: Déplacement
+                icon: mdi:move-resize-variant
+              - entity: sensor.life360_vitesse_claude
+                name: Vitesse
+                icon: mdi:speedometer
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+          - type: map
+            entities:
+              - entity: person.claude
+            theme_mode: light
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+            hours_to_show: 72
+            default_zoom: 11
+        title: Valérie
+      - type: grid
+        cards:
+          - type: entities
+            entities:
+              - entity: person.brigitte
+              - entity: sensor.life360_pile_tel_brigitte
+                name: Piles
+                icon: mdi:battery
+              - entity: sensor.life360_pile_tel_en_charge_valerie
+                name: Charge
+                icon: mdi:flash
+              - entity: sensor.life360_en_deplacement_brigitte
+                name: Déplacement
+                icon: mdi:move-resize-variant
+              - entity: sensor.life360_vitesse_brigitte
+                name: Vitesse
+                icon: mdi:speedometer
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+          - type: map
+            entities:
+              - entity: person.brigitte
+            theme_mode: light
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+            hours_to_show: 72
+            default_zoom: 11
+          - type: custom:mushroom-title-card
+            title: Michel
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: entities
+            entities:
+              - entity: person.michel
+              - entity: sensor.life360_pile_tel_michel
+                name: Piles
+                icon: mdi:battery
+              - entity: sensor.life360_pile_tel_en_charge_michel
+                name: Charge
+                icon: mdi:flash
+              - entity: sensor.life360_en_deplacement_michel
+                name: Déplacement
+                icon: mdi:move-resize-variant
+              - entity: sensor.life360_vitesse_michel
+                name: Vitesse
+                icon: mdi:speedometer
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+          - type: map
+            entities:
+              - entity: person.michel
+            theme_mode: light
+            layout_options:
+              grid_columns: 2
+              grid_rows: 4
+            hours_to_show: 72
+            default_zoom: 11
+        title: Brigitte
+    badges:
+      - type: entity
+        entity: person.valerie
+        name: Valérie
+        show_entity_picture: true
+      - type: entity
+        entity: person.brigitte
+        show_entity_picture: true
+        name: Brigitte
+      - type: entity
+        entity: person.claude
+        show_entity_picture: true
+      - type: entity
+        entity: person.michel
+        show_entity_picture: true
+    cards: []
+  - title: Statut
+    path: Sous-vue-statut
+    icon: mdi:list-status
+    theme: NM - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: plant-status
+            entity: plant.lis_de_la_paix
+            name: Lis de la paix
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+          - type: custom:mushroom-title-card
+            title: Porte avant
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: entities
+            entities:
+              - entity: lock.porte_d_entree
+              - entity: sensor.serrure_porte_avant_traduire_etat
+                name: État serrure
+              - entity: sensor.porte_d_entree_batterie
+                name: Pile
+              - entity: sensor.porte_d_entree_operator
+                name: Dernier utilisateur
+              - entity: binary_sensor.porte_d_entree_porte
+                name: État de la porte
+            title: États
+            layout_options:
+              grid_columns: 4
+              grid_rows: 5
+        title: Plante
+      - type: grid
+        cards:
+          - type: tile
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            name: Statut
+            entity: sensor.canon_pro_100_series
+          - type: custom:mushroom-title-card
+            title: Niveaux d'encres
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: custom:auto-entities
+            card:
+              type: custom:bar-card
+              icon: mdi:water
+              title_position: inside
+              height: 35
+              columns: '2'
+              positions:
+                icon: inside
+                indicator: inside
+                name: inside
+                value: inside
+              show_icon: true
+              align: split
+              max: 100
+              unit_of_measurement: '%'
+              severity:
+                - color: '#d11e1e'
+                  from: 0
+                  to: 5
+                - color: '#cf2d11'
+                  from: 6
+                  to: 10
+                - color: '#cc3900'
+                  from: 11
+                  to: 15
+                - color: '#c84400'
+                  from: 16
+                  to: 20
+                - color: '#c44d00'
+                  from: 21
+                  to: 25
+                - color: '#bf5600'
+                  from: 26
+                  to: 30
+                - color: '#b95f00'
+                  from: 31
+                  to: 35
+                - color: '#b36600'
+                  from: 36
+                  to: 40
+                - color: '#ac6e00'
+                  from: 41
+                  to: 45
+                - color: '#a57500'
+                  from: 46
+                  to: 50
+                - color: '#9d7b00'
+                  from: 51
+                  to: 55
+                - color: '#948100'
+                  from: 56
+                  to: 60
+                - color: '#8b8700'
+                  from: 61
+                  to: 65
+                - color: '#818d00'
+                  from: 66
+                  to: 70
+                - color: '#769200'
+                  from: 71
+                  to: 75
+                - color: '#6a9700'
+                  from: 76
+                  to: 80
+                - color: '#5d9c00'
+                  from: 81
+                  to: 85
+                - color: '#4da100'
+                  from: 86
+                  to: 90
+                - color: '#39a500'
+                  from: 91
+                  to: 95
+                - color: '#15a911'
+                  from: 96
+                  to: 100
+              card_mod:
+                style: >
+                  bar-card-currentbar, bar-card-current, bar-card-backgroundbar
+                  {
+
+                      height: 8px !important;
+                      margin-top: 30px;
+                  }
+
+                  ha-card {
+                      background: none;
+                  }
+
+                  ha-icon{
+                      color: lightblue !important;
+                  }
+
+                  bar-card-iconbar {
+                      margin-bottom: 10px;
+                  }
+            filter:
+              include:
+                - attributes:
+                    marker_type: inkCartridge
+                  domain: sensor
+            sort:
+              method: state
+              numeric: true
+            show_empty: false
+            layout_options:
+              grid_columns: 4
+              grid_rows: 3
+          - type: custom:mushroom-title-card
+            title: Brosse à dents
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: tile
+            entity: sensor.brosse_a_dents_traduire_etat
+            name: État
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            icon: mdi:toothbrush-paste
+          - type: tile
+            entity: sensor.smart_series_9000_10000_b259_batterie
+            name: Pile
+          - type: tile
+            entity: sensor.smart_series_9000_10000_b259_duree
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            name: Temps de bossage
+          - type: tile
+            entity: sensor.smart_series_9000_10000_b259_secteur
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+            name: Secteurs
+            icon: mdi:select-place
+          - type: tile
+            entity: sensor.smart_series_9000_10000_b259_force_du_signal
+            name: Signal
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+          - type: tile
+            entity: sensor.smart_series_9000_10000_b259_pression
+            name: Pression
+            icon: mdi:wifi-strength-4
+            layout_options:
+              grid_columns: 2
+              grid_rows: 1
+        title: Imprimante
+    badges:
+      - type: entity
+        entity: sensor.date_time
+  - title: Tempest
+    path: Sous-vue-tempest
+    icon: mdi:windsock
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - chart_type: line
+            period: day
+            type: statistics-graph
+            entities:
+              - sensor.tempest_st_00032986_battery
+            stat_types:
+              - mean
+              - max
+              - min
+            days_to_show: 30
+            logarithmic_scale: false
+            hide_legend: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 5
+            title: Piles
+          - type: custom:mushroom-title-card
+            title: Mode / Description
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+          - type: markdown
+            content: '{{ states(''sensor.weatherflow_mode_descption'') }}'
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+            card_mod:
+              style: |
+                ha-card {
+                  --card-mod-icon-color: #44739e;
+                  font-size: 1.1rem  !important;
+                  margin-top: -20px;
+                  margin-left: -3px;
+                  background: transparent;
+                }
+          - type: custom:mushroom-title-card
+            title: ''
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+      - type: grid
+        cards:
+          - chart_type: line
+            period: day
+            type: statistics-graph
+            entities:
+              - sensor.tempest_st_00032986_voltage
+            stat_types:
+              - mean
+              - min
+              - max
+            hide_legend: true
+            layout_options:
+              grid_columns: 4
+              grid_rows: 5
+            days_to_show: 30
+            title: Voltage
+          - type: custom:mushroom-title-card
+            title: Suivi du mode
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: history-graph
+            entities:
+              - entity: sensor.tempest_st_00032986_battery_mode
+            logarithmic_scale: false
+            min_y_axis: 0
+            max_y_axis: 4
+            fit_y_data: false
+            layout_options:
+              grid_columns: 4
+              grid_rows: 2
+            hours_to_show: 96
+    badges:
+      - type: entity
+        entity: sensor.tempest_st_00032986_status
+        display_type: complete
+        name: Statut
+  - title: Mise à jours
+    path: Sous-vue-mise-a-jours
+    icon: mdi:update
+    theme: NMMIC - Gonsboro
+    type: sections
+    max_columns: 2
+    sections:
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: Mises à jours système
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - type: custom:mushroom-update-card
+            entity: update.home_assistant_core_update
+            name: Core
+            show_buttons_control: true
+            icon_type: entity-picture
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: custom:mushroom-template-card
+            primary: Informations Version
+            secondary: >-
+              Installée v{{ state_attr('update.home_assistant_core_update',
+              'installed_version')}}
+
+              Dernière v{{ state_attr('update.home_assistant_core_update',
+              'latest_version')}}
+            icon: mdi:package-variant-closed
+            multiline_secondary: true
+            fill_container: true
+            entity: update.home_assistant_core_update
+            tap_action:
+              action: more-info
+            icon_color: |-
+              {% if is_state('update.home_assistant_core_update', 'on') %}
+                orange
+              {% else %}
+                green
+              {% endif %}
+            badge_color: |-
+              {% if is_state('update.home_assistant_core_update', 'on') %}
+                red
+              {% else %}
+                blue
+              {% endif %}
+            badge_icon: |-
+              {% if is_state('update.home_assistant_core_update', 'on') %}
+                mdi:help
+              {% else %}
+                mdi:check-bold
+              {% endif %}
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: custom:mushroom-update-card
+            entity: update.home_assistant_operating_system_update
+            show_buttons_control: true
+            icon_type: entity-picture
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            name: OS
+          - type: custom:mushroom-template-card
+            primary: Informations Version
+            secondary: >-
+              Installée v{{
+              state_attr('update.home_assistant_operating_system_update',
+              'installed_version')}}
+
+              Dernière v{{
+              state_attr('update.home_assistant_operating_system_update',
+              'latest_version')}}
+            icon: mdi:package-variant-closed
+            multiline_secondary: true
+            fill_container: true
+            entity: update.home_assistant_operating_system_update
+            tap_action:
+              action: more-info
+            icon_color: >-
+              {% if is_state('update.home_assistant_operating_system_update',
+              'on') %}
+                orange
+              {% else %}
+                green
+              {% endif %}
+            badge_color: >-
+              {% if is_state('update.home_assistant_operating_system_update',
+              'on') %}
+                red
+              {% else %}
+                blue
+              {% endif %}
+            badge_icon: >-
+              {% if is_state('update.home_assistant_operating_system_update',
+              'on') %}
+                mdi:help
+              {% else %}
+                mdi:check-bold
+              {% endif %}
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - type: custom:mushroom-update-card
+            entity: update.home_assistant_supervisor_update
+            show_buttons_control: true
+            icon_type: entity-picture
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            name: Superviseur
+          - type: custom:mushroom-template-card
+            primary: Informations Version
+            secondary: >-
+              Installée v{{
+              state_attr('update.home_assistant_supervisor_update',
+              'installed_version')}}
+
+              Dernière v{{ state_attr('update.home_assistant_supervisor_update',
+              'latest_version')}}
+            icon: mdi:package-variant-closed
+            multiline_secondary: true
+            fill_container: true
+            entity: update.home_assistant_core_update
+            tap_action:
+              action: more-info
+            icon_color: |-
+              {% if is_state('update.home_assistant_supervisor_update', 'on') %}
+                orange
+              {% else %}
+                green
+              {% endif %}
+            badge_color: |-
+              {% if is_state('update.home_assistant_supervisor_update', 'on') %}
+                red
+              {% else %}
+                blue
+              {% endif %}
+            badge_icon: |-
+              {% if is_state('update.home_assistant_supervisor_update', 'on') %}
+                mdi:help
+              {% else %}
+                mdi:check-bold
+              {% endif %}
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.hacs_update
+            show_entity_picture: true
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+            name: HACS
+          - type: custom:mushroom-template-card
+            primary: Informations Version
+            secondary: >-
+              Installée v{{ state_attr('update.hacs_update',
+              'installed_version')}}
+
+              Dernière v{{ state_attr('update.hacs_update', 'latest_version')}}
+            icon: mdi:package-variant-closed
+            multiline_secondary: true
+            fill_container: true
+            entity: update.hacs_update
+            tap_action:
+              action: more-info
+            icon_color: |-
+              {% if is_state('update.hacs_update', 'on') %}
+                orange
+              {% else %}
+                green
+              {% endif %}
+            badge_color: |-
+              {% if is_state('update.hacs_update', 'on') %}
+                red
+              {% else %}
+                blue
+              {% endif %}
+            badge_icon: |-
+              {% if is_state('update.hacs_update', 'on') %}
+                mdi:help
+              {% else %}
+                mdi:check-bold
+              {% endif %}
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+      - type: grid
+        cards:
+          - type: custom:mushroom-title-card
+            title: Mises à jours logiciels
+            layout_options:
+              grid_columns: 4
+              grid_rows: 1
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.advanced_ssh_web_terminal_update
+            name: 'SSH & Web Terminal '
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.home_assistant_google_drive_backup_update
+            name: Google Drive
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.file_editor_update
+            name: File editor
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.hydroqc_add_on_update
+            name: Hydroqc
+            icon: mdi:hydro-power
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.weatherflow_to_mqtt_update
+            name: WeatherFlow
+            icon: mdi:weather-cloudy-clock
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.mosquitto_broker_update
+            name: Mosquitto
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - type: tile
+            entity: sensor.nombre_de_mise_a_jour_hacs
+            name: Mises à jour Cartes
+            icon: mdi:update
+            vertical: true
+            layout_options:
+              grid_columns: 2
+              grid_rows: 2
+          - features:
+              - type: update-actions
+                backup: ask
+            type: tile
+            entity: update.studio_code_server_update
+            name: Studio Code Server
+            state_content:
+              - installed_version
+              - latest_version
+            show_entity_picture: true
+          - type: custom:auto-entities
+            filter:
+              include:
+                - entity_id: update.*
+                  state: 'on'
+              exclude:
+                - entity_id: update.*
+                  state: 'off'
+                - entity_id: update.*
+                  attributes:
+                    supported_features: 25
+                - entity_id: update.home_assistant_core_update
+                - entity_id: update.home_assistant_operating_system_update
+                - entity_id: update.home_assistant_supervisor_update
+            card:
+              type: custom:flex-table-card
+              sort_by: friendly_name+
+              clickable: true
+              columns:
+                - data: entity_picture
+                  align: center
+                  name: icone
+                  modify: '''<img src="'' + x + ''"style="height: 30px;width:30px">'''
+                - data: friendly_name
+                  align: left
+                  name: ' Nom'
+                  modify: |-
+                    x = x.replace('update', '');
+                    x;
+                - data: installed_version
+                  name: Installé
+                  align: center
+                - data: latest_version
+                  name: Dernière
+                  align: center
+              css:
+                tbody tr td:nth-child(3): 'color: green; font-weight: bold;'
+                tbody tr td:nth-child(4): 'color: red; font-weight: bold;'
+            layout_options:
+              grid_columns: 4
+              grid_rows: 4
